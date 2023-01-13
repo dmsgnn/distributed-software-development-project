@@ -10,6 +10,8 @@
     * frontend
     * tool-script
     * docker-compose.yml
+    
+    ![image](https://user-images.githubusercontent.com/59147446/212437776-5c63f356-8e55-4d47-8dc3-f51454950a61.png)
 
 ### How to run
 - 1. Pull the latest backend Docker image from [here](https://github.com/DSD-DSec/backend/pkgs/container/backend).
