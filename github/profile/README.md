@@ -22,3 +22,9 @@
 - 6. If the application is to be deployed, it would be unsecure to use the default variables.
 - 7. Load the environment variables specified in the ./.github/env.sh file using the `. ./.github/env.sh` command
 - 8. cd into the folder that contains the repositories and the `docker-compose.yml` file. Run the `docker-compose up` command. The application should be accesible on the `http://localhost` url.
+
+### NOTE:
+After modifing the `DSEC_NEXT_PUBLIC_API_BASE_PATH` or `DSEC_NEXT_PUBLIC_GITHUB_REDIRECT_URL` variables. The frontend Docker image must be rebuilt. To achieve the wanted result you must first run `docker-compose rm` and then remove the frontend image using the `docker image rm dsec-dsec-frontend:latest` command. After that you must reload the variables in the shell using the command mentioned in the 7th step and repeat the 8th step.
+
+If modifications are done only to the variables used by the backend (any other variable) it is only necessary to repeat the 7th and the 8th step.
+
