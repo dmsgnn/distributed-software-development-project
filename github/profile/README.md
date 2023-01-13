@@ -3,10 +3,10 @@
 ### Prerequisites for running the application localy
 - 1. [ngrok](https://ngrok.com/) or similar tool that is able to make your application accesible from external network. This is neccessary for github to be able to access the webhook on the backend.
 - 2. [docker](https://www.docker.com/) and docker-compose.
-- 3. Cloned frontend, tool-script and .github repositories in the same folder.
+- 3. Cloned frontend, tool-script, backend and .github repositories in the same folder.
 - 4. "docker-compose.yml" file from the .github repository placed in the directory that contains the above mentioned repositories. The filesystem tree structure should look like:
 
-    ![image](https://user-images.githubusercontent.com/59147446/212437776-5c63f356-8e55-4d47-8dc3-f51454950a61.png)
+    ![image](https://user-images.githubusercontent.com/59147446/212439086-5f7315e0-510b-417b-8ae7-06b5cdadd5ae.png)
 
 ### How to run
 - 1. Pull the latest backend Docker image from [here](https://github.com/DSD-DSec/backend/pkgs/container/backend).
