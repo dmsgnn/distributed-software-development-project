@@ -20,5 +20,5 @@
   ![image](https://user-images.githubusercontent.com/59147446/212435411-0a1a12b6-8b81-43e0-9218-a1ae7e7d91c1.png)
 
 - 6. If the application is to be deployed, it would be unsecure to use the default variables.
-- 7. Load the environment variables specified in the ./.github/env.sh file using the `. ./.github/env.sh command`
+- 7. Load the environment variables specified in the ./.github/env.sh file using the `. ./.github/env.sh` command
 - 8. cd into the folder that contains the repositories and the `docker-compose.yml` file. Run the `docker-compose up` command. The application should be accesible on the `http://localhost` url.
