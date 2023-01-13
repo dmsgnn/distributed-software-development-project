@@ -1,6 +1,6 @@
 # DSD-DSec
 
-### Prerequisites
+### Prerequisites for running the application localy
 - 1. [ngrok](https://ngrok.com/) or similar tool that is able to make your application accesible from external network. This is neccessary for github to be able to access the webhook on the backend.
 - 2. [docker](https://www.docker.com/) and docker-compose.
 - 3. Cloned frontend, tool-script and .github repositories in the same folder.
