@@ -5,12 +5,6 @@
 - 2. [docker](https://www.docker.com/) and docker-compose.
 - 3. Cloned frontend, tool-script and .github repositories in the same folder.
 - 4. "docker-compose.yml" file from the .github repository placed in the directory that contains the above mentioned repositories. The filesystem tree structure should look like:
-  * .../some_folder
-    * .github
-    * frontend
-    * tool-script
-    * docker-compose.yml
-    
     ![image](https://user-images.githubusercontent.com/59147446/212437776-5c63f356-8e55-4d47-8dc3-f51454950a61.png)
 
 ### How to run
