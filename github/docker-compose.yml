@@ -1,0 +1,128 @@
+version: '3.8'
+
+services:
+
+  dsec-backend:
+    image: 'ghcr.io/dsd-dsec/backend:1.0.0'
+    networks: 
+      - dsec-network
+    ports:
+      - "9000:8080"
+    container_name: dsec-backend
+    depends_on:
+      - dsec-db
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://dsec-db:5432/dsec-postgres
+      - SPRING_DATASOURCE_USERNAME=dsec-postgres
+      - SPRING_DATASOURCE_PASSWORD=dsec-postgres
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.postgresql.Driver
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_GENERATE_DDL=false
+      - SPRING_JPA_SHOW_SQL=false
+      - SPRING_SQL_INIT_MODE=never
+      - SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GITHUB_CLIENT_SECRET=${DSEC_GITHUB_CLIENT_SECRET}
+      - SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GITHUB_CLIENT_ID=${DSEC_GITHUB_CLIENT_ID}
+      - JWT_PRIVATE_KEY=${DSEC_PRIVATE_KEY}
+      - JWT_PUBLIC_KEY=${DSEC_PUBLIC_KEY}
+      - JWT_EXPIRATION=36000
+      - CORS_ALLOW_ORIGINS=http://*localhost:[*]
+      - BACKEND_URL=${DSEC_NEXT_PUBLIC_API_BASE_PATH}
+      - BACKEND_URL_PUBLIC=${DSEC_BACKEND_URL_PUBLIC}
+      - BACKEND_ENCRYPTION_KEY=${DSEC_ENCRYPTION_PASS}
+      - TOOLS_BANDIT=http://bandit:5000/bandit
+      - TOOLS_FLAWFINDER=http://flawfinder:5000/flawfinder
+      - TOOLS_GITLEAKS=http://gitleaks:5000/gitleaks
+      - TOOLS_GOKART=http://gokart:5000/gokart
+      - TOOLS_PROGPILOT=http://progpilot:5000/progpilot
+      - SERVER_SSL_KEY_STORE=${DSEC_SERVER_SSL_KEY_STORE}
+      - SERVER_SSL_KEY_STORE_PASSWORD=${DSEC_SERVER_SSL_KEY_STORE_PASSWORD}
+      - SERVER_SSL_KEY_STORE_TYPE=${DSEC_SERVER_SSL_KEY_STORE_TYPE}
+    volumes:
+      - ./backend/src/main/resources:/resources
+
+  dsec-db:
+    image: 'postgres:15.1-alpine'
+    networks: 
+      - dsec-network
+    ports:
+      - "9001:5432"
+    container_name: dsec-db
+    environment:
+      - POSTGRES_USER=dsec-postgres
+      - POSTGRES_PASSWORD=dsec-postgres
+      - POSTGRES_DB=dsec-postgres
+
+  dsec-frontend:
+    networks: 
+      - dsec-network
+    ports:
+      - "80:3000"
+    depends_on:
+      - dsec-backend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+      - |
+        NEXT_ENV=
+        NEXT_PUBLIC_GITHUB_REDIRECT_URL=${DSEC_NEXT_PUBLIC_GITHUB_REDIRECT_URL}
+        NEXT_PUBLIC_API_BASE_PATH=${DSEC_NEXT_PUBLIC_API_BASE_PATH}
+    container_name: dsec-frontend
+
+  bandit:
+    build:
+      context: ./tool-script/script-bandit
+      dockerfile: Dockerfile
+    networks: 
+      - dsec-network
+    environment:
+      - PASS=${DSEC_ENCRYPTION_PASS}
+    ports: 
+      - 9002:5000
+  flawfinder:
+    build:
+      context: ./tool-script/script-flawfinder
+      dockerfile: Dockerfile
+    networks: 
+      - dsec-network
+    environment:
+      - PASS=${DSEC_ENCRYPTION_PASS}
+    ports: 
+      - 9003:5000
+  gitleaks:
+    build:
+      context: ./tool-script/script-gitleaks
+      dockerfile: Dockerfile
+    networks: 
+      - dsec-network
+    environment:
+      - PASS=${DSEC_ENCRYPTION_PASS}
+    ports: 
+      - 9004:5000
+  gokart:
+    build:
+      context: ./tool-script/script-gokart
+      dockerfile: Dockerfile
+    networks: 
+      - dsec-network
+    environment:
+      - PASS=${DSEC_ENCRYPTION_PASS}
+    ports: 
+      - 9005:5000
+  progpilot:
+    build:
+      context: ./tool-script/script-progpilot
+      dockerfile: Dockerfile
+    networks: 
+      - dsec-network
+    environment:
+      - PASS=${DSEC_ENCRYPTION_PASS}
+    ports: 
+      - 9006:5000
+
+networks:
+  dsec-network:
+    driver: bridge
+  
