@@ -3,7 +3,6 @@ version: '3.8'
 services:
 
   dsec-backend:
-    image: 'ghcr.io/dsd-dsec/backend:1.0.0'
     networks: 
       - dsec-network
     ports:
@@ -11,6 +10,9 @@ services:
     container_name: dsec-backend
     depends_on:
       - dsec-db
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     environment:
       - SPRING_PROFILES_ACTIVE=prod
       - SPRING_DATASOURCE_URL=jdbc:postgresql://dsec-db:5432/dsec-postgres
