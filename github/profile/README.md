@@ -32,3 +32,4 @@ After modifing the `DSEC_NEXT_PUBLIC_API_BASE_PATH` or `DSEC_NEXT_PUBLIC_GITHUB_
 
 If modifications are done only to the variables used by the backend (any other variable) it is only necessary to repeat the 7th step.
 
+If you have created some repositories but restarted ngrok and the ngrok url changed, you will not be able to run the analysis on the already existing containers because previously created webhooks point to the wrong url. The repos will need to be recreated in the app.
