@@ -16,7 +16,7 @@
         * docker-compose.yml
     
 - 3. Start the ngrok tunel with the `ngrok http https://localhost:9000` command. The url specifies the backend url on the host machine.
-- 4. Modify the `DSEC_BACKEND_URL_PUBLIC` variable in `.env` file. The value should be the url obtained in the 3rd step.
+- 4. Modify the `DSEC_BACKEND_URL_PUBLIC` variable in `.env` file. The value should be the `url` obtained in the 3rd step in the `Forrwarding url -> something` line.
 - 5. Modify other neccessary values. The default ones should work for some time. The plan is to discontinue the github oauth2 app secrets in the near future. It might be neccessary to setup your own github oauth2 app and replace `DSEC_GITHUB_CLIENT_SECRET` and `DSEC_GITHUB_CLIENT_ID` variables. The settings for the github oauth2 app should be as follows:
 
   ![image](https://user-images.githubusercontent.com/59147446/212435411-0a1a12b6-8b81-43e0-9218-a1ae7e7d91c1.png)
