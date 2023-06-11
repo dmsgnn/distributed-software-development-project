@@ -10,10 +10,10 @@ The aim of this project was to design and implement a web service to help develo
 
 ### Team and organization
 
-The team was made of six students, half from Polytechnic University of Milan (Italy) and half from University of Zagreb (Croatia). The scrum agile framework has been followed for the software development process. This repository is a mirror of the original [organization's](/https://github.com/DSD-DSec) multiple repositories used during the project. More information about the team and the project organization, including key technical details, can be found in the [final report](/docs/final_report.pdf).
+The team was made of six students, half from Polytechnic University of Milan (Italy) and half from University of Zagreb (Croatia). The scrum agile framework has been followed for the software development process. This repository is a mirror of the original [organization's](https://github.com/DSD-DSec) multiple repositories used during the project. More information about the team and the project organization, including key technical details, can be found in the [final report](/docs/final_report.pdf).
 
 ## How to run
-### Prerequisites for running the application localy
+### Prerequisites for running the application locally
 1. [ngrok](https://ngrok.com/), or a similar tool which is able to make the application accessible from external network. This is necessary for GitHub to access the webhook on the backend.
 2.  [docker](https://www.docker.com/), and docker-compose.
 
